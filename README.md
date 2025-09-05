@@ -459,19 +459,20 @@
         }
 
         try {
-            // Pastikan URL di sini adalah URL Web app yang baru Anda dapatkan
-const url = `https://script.google.com/macros/s/AKfycbxOMgxciIdOLpd2vlKLHIaIpumhc3PpMnIJJhmhuYhaUoqrQxdzKto00B3rP7GcJHW1XQ/exec`;
-const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question })
-});
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: chatHistory
+                })
+            });
 
             const data = await response.json();
 
             let answer = 'Maaf, saya tidak dapat menemukan jawaban yang tepat. Silakan coba pertanyaan lain.';
-            if (data.answer) {
-                answer = data.answer;
+            if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+                answer = data.candidates[0].content.parts[0].text;
             }
 
             loadingBubble.remove();

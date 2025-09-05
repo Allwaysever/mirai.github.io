@@ -460,7 +460,7 @@
 
         try {
             // Pastikan URL di sini adalah URL Web app yang baru Anda dapatkan
-const url = `https://script.google.com/macros/s/AKfycbwFE9JbV5DP8IYxKc2T9fZCnXOJY5gExQvWIpXCoTNjXHkSguwt-PnxAxDAjWC8-SFcYQ/exec`;
+const url = `https://script.google.com/macros/s/AKfycbxOMgxciIdOLpd2vlKLHIaIpumhc3PpMnIJJhmhuYhaUoqrQxdzKto00B3rP7GcJHW1XQ/exec`;
 const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
